@@ -1,0 +1,158 @@
+{{ define "main" }}
+{{ $index := slice }}
+{{ range where site.RegularPages "Section" "ne" "search" }}
+  {{ $index = $index | append (dict
+    "title" .Title
+    "permalink" .RelPermalink
+    "section" .Section
+    "date" (.Date.Format "2006-01-02")
+    "summary" (.Summary | plainify)
+    "content" (.Plain | plainify)
+  ) }}
+{{ end }}
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Busca Global</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">Encontre palavras e frases em todos os posts publicados.</p>
+    </div>
+    <span class="pill" id="search-count">0 resultados</span>
+  </div>
+
+  <article class="card search-card">
+    <form id="search-page-form" class="search-page-form" role="search">
+      <input id="search-page-input" type="search" name="q" placeholder="Ex.: integral definida, divisor de tensão, dataclass" aria-label="Termo de busca" autocomplete="off">
+      <button type="submit">Buscar</button>
+    </form>
+    <p class="search-hint">Dica: use termos completos para encontrar frases exatas mais rápido.</p>
+  </article>
+
+  <div id="search-results" class="search-results"></div>
+</section>
+
+<script>
+  (function () {
+    const data = {{ $index | jsonify | safeJS }};
+    const params = new URLSearchParams(window.location.search);
+    const input = document.getElementById("search-page-input");
+    const form = document.getElementById("search-page-form");
+    const resultsContainer = document.getElementById("search-results");
+    const countTag = document.getElementById("search-count");
+
+    const normalize = (value) =>
+      (value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+
+    function rank(post, query) {
+      const q = normalize(query);
+      const title = normalize(post.title);
+      const summary = normalize(post.summary);
+      const content = normalize(post.content);
+
+      if (!q) {
+        return 0;
+      }
+
+      let score = 0;
+
+      if (title.includes(q)) score += 6;
+      if (summary.includes(q)) score += 4;
+      if (content.includes(q)) score += 2;
+
+      const terms = q.split(/\s+/).filter(Boolean);
+      for (const term of terms) {
+        if (title.includes(term)) score += 2;
+        if (summary.includes(term)) score += 1;
+        if (content.includes(term)) score += 0.5;
+      }
+
+      return score;
+    }
+
+    function createResultItem(post) {
+      const article = document.createElement("article");
+      article.className = "card post-card search-result-item";
+
+      const meta = document.createElement("p");
+      meta.className = "post-meta";
+      meta.textContent = `${post.section} · ${post.date}`;
+
+      const title = document.createElement("h2");
+      const link = document.createElement("a");
+      link.href = post.permalink;
+      link.textContent = post.title;
+      title.appendChild(link);
+
+      const summary = document.createElement("p");
+      summary.textContent = post.summary || "Sem resumo disponível.";
+
+      article.appendChild(meta);
+      article.appendChild(title);
+      article.appendChild(summary);
+
+      return article;
+    }
+
+    function renderResults(query) {
+      const q = normalize(query);
+      resultsContainer.innerHTML = "";
+
+      if (!q) {
+        countTag.textContent = "0 resultados";
+        const empty = document.createElement("article");
+        empty.className = "card search-empty";
+        empty.innerHTML = "<p>Digite algo na busca para ver resultados.</p>";
+        resultsContainer.appendChild(empty);
+        return;
+      }
+
+      const ranked = data
+        .map((post) => ({ post, score: rank(post, q) }))
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date));
+
+      countTag.textContent = `${ranked.length} resultado${ranked.length === 1 ? "" : "s"}`;
+
+      if (!ranked.length) {
+        const empty = document.createElement("article");
+        empty.className = "card search-empty";
+        empty.innerHTML = "<p>Nenhum post encontrado para essa busca.</p>";
+        resultsContainer.appendChild(empty);
+        return;
+      }
+
+      const grid = document.createElement("div");
+      grid.className = "post-grid";
+      for (const item of ranked) {
+        grid.appendChild(createResultItem(item.post));
+      }
+      resultsContainer.appendChild(grid);
+    }
+
+    function updateSearch(query) {
+      const q = query || "";
+      input.value = q;
+      renderResults(q);
+      const url = new URL(window.location.href);
+      if (q) {
+        url.searchParams.set("q", q);
+      } else {
+        url.searchParams.delete("q");
+      }
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      updateSearch(input.value);
+    });
+
+    updateSearch(params.get("q") || "");
+  })();
+</script>
+{{ end }}

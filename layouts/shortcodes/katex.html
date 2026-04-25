@@ -1,0 +1,9 @@
+{{- $expr := .Inner | default (.Get 0) -}}
+{{- $display := .Get "display" | default false -}}
+{{- if $display -}}
+<div class="math-block">$$
+{{- $expr -}}
+$$</div>
+{{- else -}}
+<span class="math-inline">${{ $expr }}$</span>
+{{- end -}}

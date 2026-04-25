@@ -1,0 +1,50 @@
+baseURL = 'https://example.com/'
+languageCode = 'pt-br'
+title = 'Learning in Public'
+paginate = 6
+buildDrafts = false
+buildFuture = false
+enableRobotsTXT = true
+summaryLength = 28
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[permalinks]
+  posts = '/:sections/:slug/'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
+    style = 'github-dark'
+    tabWidth = 2
+
+[params]
+  author = 'Fabin'
+  description = 'Blog pessoal focado em Learning in Public para Engenharia Elétrica e Programação.'
+  showReadingTime = true
+  enableKaTeX = true
+  sections = ['calculo', 'circuitos', 'programacao', 'ingles']
+  featuredPostCount = 5
+
+[menu]
+  [[menu.main]]
+    name = 'Início'
+    pageRef = '/'
+    weight = 10
+  [[menu.main]]
+    name = 'Tópicos'
+    pageRef = '/topicos'
+    weight = 20
+  [[menu.main]]
+    name = 'Sobre'
+    pageRef = '/sobre'
+    weight = 30

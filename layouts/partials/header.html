@@ -1,0 +1,42 @@
+<header class="site-header">
+  <div class="brand-block">
+    <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <p class="brand-tagline">{{ site.Params.description }}</p>
+  </div>
+  <div class="nav-tools">
+    <nav class="site-nav" aria-label="Principal">
+      <a href="{{ "/" | relURL }}">Início</a>
+      <details class="topics-dropdown">
+        <summary>Tópicos</summary>
+        <div class="topics-panel card">
+          <a class="topics-all-link" href="{{ "/topicos/" | relURL }}">Ver todos os tópicos</a>
+          {{ $sections := where site.Sections "Section" "ne" "search" }}
+          {{ $sections = where $sections "Section" "ne" "topicos" }}
+          {{ range $sections.ByTitle }}
+            <section class="topics-group">
+              <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              <ul>
+                {{ range .RegularPages.ByDate.Reverse }}
+                  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ else }}
+                  <li>Nenhum post ainda.</li>
+                {{ end }}
+              </ul>
+            </section>
+          {{ else }}
+            <p>Crie uma nova pasta em content para aparecer aqui automaticamente.</p>
+          {{ end }}
+        </div>
+      </details>
+      <a href="{{ "/sobre/" | relURL }}">Sobre</a>
+    </nav>
+    <form class="search-form" action="{{ "/search/" | relURL }}" method="get" role="search">
+      <input type="search" name="q" placeholder="Buscar em todo o blog" aria-label="Buscar em todo o blog">
+      <button type="submit">Buscar</button>
+    </form>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema">
+      <span class="theme-toggle-label">Tema</span>
+      <span id="theme-toggle-value">Dark</span>
+    </button>
+  </div>
+</header>

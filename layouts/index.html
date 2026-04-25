@@ -1,0 +1,45 @@
+{{ define "main" }}
+<section class="hero card">
+  <div>
+    <p class="eyebrow">Learning in Public</p>
+    <h1>Documentação diária de Engenharia Elétrica e Programação</h1>
+    <p class="lead">Notas técnicas, fórmulas em LaTeX, códigos em múltiplas linguagens e revisões organizadas por tema.</p>
+  </div>
+  <div class="hero-meta">
+    <div class="stat">
+      <strong>{{ len (where site.RegularPages "Section" "calculo") }}</strong>
+      <span>posts em Cálculo</span>
+    </div>
+    <div class="stat">
+      <strong>{{ len (where site.RegularPages "Section" "programacao") }}</strong>
+      <span>posts em Programação</span>
+    </div>
+    <div class="stat">
+      <strong>KaTeX</strong>
+      <span>fórmulas renderizadas</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-header">
+    <h2>Últimos posts</h2>
+    <a href="{{ "/calculo" | relURL }}">Ver estrutura</a>
+  </div>
+
+  <div class="post-grid">
+    {{ $techPosts := where site.RegularPages "Section" "ne" "" }}
+    {{ range first site.Params.featuredPostCount $techPosts.ByDate.Reverse }}
+      <article class="card post-card">
+        <p class="post-meta">{{ .Section }} · {{ .Date.Format "02 Jan 2006" }}</p>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+      </article>
+    {{ else }}
+      <article class="card post-card">
+        <p>Crie seus primeiros posts nas pastas de conteúdo para vê-los aqui.</p>
+      </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

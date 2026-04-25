@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Seção</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </div>
+    {{ if .Sections }}<span class="pill">{{ len .Pages }} posts</span>{{ end }}
+  </div>
+
+  {{ if .Pages }}
+    <div class="post-grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="card post-card">
+          <p class="post-meta">{{ .Section }} · {{ .Date.Format "02 Jan 2006" }}</p>
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <p>{{ .Summary }}</p>
+          {{ with .Params.tags }}
+            <div class="tag-row">
+              {{ range first 3 . }}<span class="tag">{{ . }}</span>{{ end }}
+            </div>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <article class="card">
+      <p>Esta seção ainda não tem publicações.</p>
+    </article>
+  {{ end }}
+</section>
+{{ end }}

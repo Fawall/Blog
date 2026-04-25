@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{ $sections := where site.Sections "Section" "ne" "search" }}
+{{ $sections = where $sections "Section" "ne" "topicos" }}
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Mapa do Conteúdo</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">Estrutura dinâmica: Pastas (assuntos) e artigos. Novas pastas em content aparecem automaticamente aqui.</p>
+    </div>
+    <span class="pill">{{ len $sections }} pastas</span>
+  </div>
+
+  <div class="topics-page-grid">
+    {{ range $sections.ByTitle }}
+      <article class="card topics-page-card">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        <ul class="topics-page-list">
+          {{ range .RegularPages.ByDate.Reverse }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <span class="post-meta">{{ .Date.Format "02 Jan 2006" }}</span>
+            </li>
+          {{ else }}
+            <li>Nenhum artigo publicado nesta pasta.</li>
+          {{ end }}
+        </ul>
+      </article>
+    {{ else }}
+      <article class="card topics-page-card">
+        <p>Nenhuma pasta encontrada. Crie uma pasta em content para começar.</p>
+      </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
