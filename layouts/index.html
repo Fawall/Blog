@@ -2,29 +2,29 @@
 <section class="hero card">
   <div>
     <p class="eyebrow">Learning in Public</p>
-    <h1>Documentação diária de Engenharia Elétrica e Programação</h1>
-    <p class="lead">Notas técnicas, fórmulas em LaTeX, códigos em múltiplas linguagens e revisões organizadas por tema.</p>
+    <h1>Daily Documentation of Electrical Engineering and Programming</h1>
+    <p class="lead">Technical notes, LaTeX formulas, code in multiple languages, and reviews organized by topic.</p>
   </div>
   <div class="hero-meta">
     <div class="stat">
-      <strong>{{ len (where site.RegularPages "Section" "calculo") }}</strong>
-      <span>posts em Cálculo</span>
+      <strong>{{ len (where site.RegularPages "Section" "calculus") }}</strong>
+      <span>posts in Calculus</span>
     </div>
     <div class="stat">
-      <strong>{{ len (where site.RegularPages "Section" "programacao") }}</strong>
-      <span>posts em Programação</span>
+      <strong>{{ len (where site.RegularPages "Section" "programming") }}</strong>
+      <span>posts in Programming</span>
     </div>
     <div class="stat">
       <strong>KaTeX</strong>
-      <span>fórmulas renderizadas</span>
+      <span>rendered formulas</span>
     </div>
   </div>
 </section>
 
 <section class="section-block">
   <div class="section-header">
-    <h2>Últimos posts</h2>
-    <a href="{{ "/calculo" | relURL }}">Ver estrutura</a>
+    <h2>Latest posts</h2>
+    <a href="{{ "/topics" | relURL }}">View structure</a>
   </div>
 
   <div class="post-grid">
@@ -37,7 +37,7 @@
       </article>
     {{ else }}
       <article class="card post-card">
-        <p>Crie seus primeiros posts nas pastas de conteúdo para vê-los aqui.</p>
+        <p>Create your first posts in content folders to see them here.</p>
       </article>
     {{ end }}
   </div>

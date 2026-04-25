@@ -155,47 +155,16 @@ a:hover {
   z-index: 30;
 }
 
-.topics-all-link {
-  display: inline-flex;
-  margin-bottom: 0.8rem;
-  padding: 0.35rem 0.65rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--muted);
-}
-
-.topics-all-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.topics-group + .topics-group {
-  margin-top: 0.8rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--border);
-}
-
-.topics-group h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1rem;
-}
-
-.topics-group ul,
-.topics-page-list {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.topics-group li {
-  margin: 0.25rem 0;
-  color: var(--muted);
-}
-
-.topics-group li a {
+.topics-folder-link {
+  display: block;
+  padding: 0.45rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text);
 }
 
-.topics-group li a:hover {
+.topics-folder-link:hover {
+  background: rgba(255, 255, 255, 0.08);
   color: var(--accent);
 }
 

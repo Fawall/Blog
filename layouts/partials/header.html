@@ -4,38 +4,28 @@
     <p class="brand-tagline">{{ site.Params.description }}</p>
   </div>
   <div class="nav-tools">
-    <nav class="site-nav" aria-label="Principal">
-      <a href="{{ "/" | relURL }}">Início</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="{{ "/" | relURL }}">Home</a>
       <details class="topics-dropdown">
-        <summary>Tópicos</summary>
+        <summary>Topics</summary>
         <div class="topics-panel card">
-          <a class="topics-all-link" href="{{ "/topicos/" | relURL }}">Ver todos os tópicos</a>
           {{ $sections := where site.Sections "Section" "ne" "search" }}
-          {{ $sections = where $sections "Section" "ne" "topicos" }}
+          {{ $sections = where $sections "Section" "ne" "topics" }}
           {{ range $sections.ByTitle }}
-            <section class="topics-group">
-              <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-              <ul>
-                {{ range .RegularPages.ByDate.Reverse }}
-                  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                {{ else }}
-                  <li>Nenhum post ainda.</li>
-                {{ end }}
-              </ul>
-            </section>
+            <a class="topics-folder-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
           {{ else }}
-            <p>Crie uma nova pasta em content para aparecer aqui automaticamente.</p>
+            <p>Create a new folder in content to appear here automatically.</p>
           {{ end }}
         </div>
       </details>
-      <a href="{{ "/sobre/" | relURL }}">Sobre</a>
+      <a href="{{ "/about/" | relURL }}">About</a>
     </nav>
     <form class="search-form" action="{{ "/search/" | relURL }}" method="get" role="search">
-      <input type="search" name="q" placeholder="Buscar em todo o blog" aria-label="Buscar em todo o blog">
-      <button type="submit">Buscar</button>
+      <input type="search" name="q" placeholder="Search the blog" aria-label="Search the blog">
+      <button type="submit">Search</button>
     </form>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema">
-      <span class="theme-toggle-label">Tema</span>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+      <span class="theme-toggle-label">Theme</span>
       <span id="theme-toggle-value">Dark</span>
     </button>
   </div>

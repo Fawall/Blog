@@ -1,5 +1,5 @@
 baseURL = 'https://example.com/'
-languageCode = 'pt-br'
+languageCode = 'en-us'
 title = 'Learning in Public'
 paginate = 6
 buildDrafts = false
@@ -29,22 +29,22 @@ summaryLength = 28
 
 [params]
   author = 'Fabin'
-  description = 'Blog pessoal focado em Learning in Public para Engenharia Elétrica e Programação.'
+  description = 'Personal blog focused on Learning in Public for Electrical Engineering and Programming.'
   showReadingTime = true
   enableKaTeX = true
-  sections = ['calculo', 'circuitos', 'programacao', 'ingles']
+  sections = ['calculus', 'circuits', 'programming', 'english']
   featuredPostCount = 5
 
 [menu]
   [[menu.main]]
-    name = 'Início'
+    name = 'Home'
     pageRef = '/'
     weight = 10
   [[menu.main]]
-    name = 'Tópicos'
-    pageRef = '/topicos'
+    name = 'Topics'
+    pageRef = '/topics'
     weight = 20
   [[menu.main]]
-    name = 'Sobre'
-    pageRef = '/sobre'
+    name = 'About'
+    pageRef = '/about'
     weight = 30

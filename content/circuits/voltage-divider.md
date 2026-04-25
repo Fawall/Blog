@@ -1,18 +1,18 @@
 ---
-title: "Divisor de tensão"
+title: "Voltage Divider"
 date: 2026-04-25T10:30:00-03:00
 draft: false
-tags: ["circuitos", "resistores", "análise"]
-description: "Nota curta sobre o divisor de tensão e sua fórmula básica."
+tags: ["circuits", "resistors", "analysis"]
+description: "Quick note on voltage divider and its basic formula."
 ---
 
-Para dois resistores em série, a tensão de saída é dada por:
+For two resistors in series, the output voltage is given by:
 
 $$
 V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}
 $$
 
-Exemplo em C++:
+Example in C++:
 
 ```cpp
 #include <iostream>

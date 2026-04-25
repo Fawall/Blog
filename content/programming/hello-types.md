@@ -1,12 +1,12 @@
 ---
-title: "Classes e tipos em Python"
+title: "Classes and Types in Python"
 date: 2026-04-25T09:00:00-03:00
 draft: false
-tags: ["python", "tipagem", "fundamentos"]
-description: "Pequena nota sobre como estruturar tipos e funções com clareza."
+tags: ["python", "typing", "fundamentals"]
+description: "A quick note on how to structure types and functions with clarity."
 ---
 
-Exemplo em Python:
+Example in Python:
 
 ```python
 from dataclasses import dataclass
@@ -18,22 +18,22 @@ class Student:
 
 
 def greet(student: Student) -> str:
-    return f"Olá, {student.name}!"
+    return f"Hello, {student.name}!"
 ```
 
-Exemplo em C#:
+Example in C#:
 
 ```csharp
 public record Student(string Name, int Age);
 ```
 
-Exemplo em Java:
+Example in Java:
 
 ```java
 public record Student(String name, int age) {}
 ```
 
-Exemplo em C++:
+Example in C++:
 
 ```cpp
 #include <string>

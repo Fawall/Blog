@@ -1,15 +1,15 @@
 {{ define "main" }}
 {{ $sections := where site.Sections "Section" "ne" "search" }}
-{{ $sections = where $sections "Section" "ne" "topicos" }}
+{{ $sections = where $sections "Section" "ne" "topics" }}
 
 <section class="section-block">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Mapa do Conteúdo</p>
+      <p class="eyebrow">Content Map</p>
       <h1>{{ .Title }}</h1>
-      <p class="lead">Estrutura dinâmica: Pastas (assuntos) e artigos. Novas pastas em content aparecem automaticamente aqui.</p>
+      <p class="lead">Dynamic structure: Folders (subjects) and articles. New folders in content appear automatically here.</p>
     </div>
-    <span class="pill">{{ len $sections }} pastas</span>
+    <span class="pill">{{ len $sections }} folders</span>
   </div>
 
   <div class="topics-page-grid">
@@ -24,13 +24,13 @@
               <span class="post-meta">{{ .Date.Format "02 Jan 2006" }}</span>
             </li>
           {{ else }}
-            <li>Nenhum artigo publicado nesta pasta.</li>
+            <li>No articles published in this folder yet.</li>
           {{ end }}
         </ul>
       </article>
     {{ else }}
       <article class="card topics-page-card">
-        <p>Nenhuma pasta encontrada. Crie uma pasta em content para começar.</p>
+        <p>No folders found. Create a folder in content to get started.</p>
       </article>
     {{ end }}
   </div>

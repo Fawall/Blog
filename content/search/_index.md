@@ -1,4 +1,4 @@
 ---
-title: "Busca"
-description: "Pesquise palavras e frases em todo o conteúdo do blog."
+title: "Search"
+description: "Search words and phrases across all blog content."
 ---
