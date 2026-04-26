@@ -14,19 +14,19 @@
 <section class="section-block">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Global Search</p>
+      <p class="eyebrow">Busca Global</p>
       <h1>{{ .Title }}</h1>
-      <p class="lead">Find words and phrases across all published posts.</p>
+      <p class="lead">Encontre palavras e frases em todos os posts publicados.</p>
     </div>
-    <span class="pill" id="search-count">0 results</span>
+    <span class="pill" id="search-count">0 resultados</span>
   </div>
 
   <article class="card search-card">
     <form id="search-page-form" class="search-page-form" role="search">
-      <input id="search-page-input" type="search" name="q" placeholder="E.g.: definite integral, voltage divider, dataclass" aria-label="Search term" autocomplete="off">
-      <button type="submit">Search</button>
+      <input id="search-page-input" type="search" name="q" placeholder="Ex.: integral definida, divisor de tensão, dataclass" aria-label="Termo de busca" autocomplete="off">
+      <button type="submit">Buscar</button>
     </form>
-    <p class="search-hint">Tip: use complete terms to find exact phrases faster.</p>
+    <p class="search-hint">Dica: use termos completos para encontrar frases exatas mais rápido.</p>
   </article>
 
   <div id="search-results" class="search-results"></div>
@@ -103,10 +103,10 @@
       resultsContainer.innerHTML = "";
 
       if (!q) {
-        countTag.textContent = "0 results";
+        countTag.textContent = "0 resultados";
         const empty = document.createElement("article");
         empty.className = "card search-empty";
-        empty.innerHTML = "<p>Type something in the search to see results.</p>";
+        empty.innerHTML = "<p>Digite algo na busca para ver resultados.</p>";
         resultsContainer.appendChild(empty);
         return;
       }
@@ -116,12 +116,12 @@
         .filter((item) => item.score > 0)
         .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date));
 
-      countTag.textContent = `${ranked.length} result${ranked.length === 1 ? "" : "s"}`;
+      countTag.textContent = `${ranked.length} resultado${ranked.length === 1 ? "" : "s"}`;
 
       if (!ranked.length) {
         const empty = document.createElement("article");
         empty.className = "card search-empty";
-        empty.innerHTML = "<p>No posts found for that search.</p>";
+        empty.innerHTML = "<p>Nenhum post encontrado para essa busca.</p>";
         resultsContainer.appendChild(empty);
         return;
       }

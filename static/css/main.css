@@ -155,16 +155,47 @@ a:hover {
   z-index: 30;
 }
 
-.topics-folder-link {
-  display: block;
-  padding: 0.45rem 0.65rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+.topics-all-link {
+  display: inline-flex;
+  margin-bottom: 0.8rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.topics-all-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.topics-group + .topics-group {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.topics-group h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+}
+
+.topics-group ul,
+.topics-page-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.topics-group li {
+  margin: 0.25rem 0;
+  color: var(--muted);
+}
+
+.topics-group li a {
   color: var(--text);
 }
 
-.topics-folder-link:hover {
-  background: rgba(255, 255, 255, 0.08);
+.topics-group li a:hover {
   color: var(--accent);
 }
 
@@ -441,7 +472,81 @@ h1 {
   text-align: center;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .site-shell,
+  .site-main,
+  .card,
+  .post-content,
+  .content-body,
+  .content-body > * {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .post-content {
+    padding-right: 1rem;
+  }
+
+  .content-body {
+    padding-right: 0.5rem;
+  }
+
+  .content-body p,
+  .content-body li {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .content-body pre,
+  .content-body .highlight,
+  .content-body .highlight pre,
+  .content-body .katex-display,
+  .content-body .math-block {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .content-body pre code {
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .content-body :not(pre) > code {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .content-body .katex-display > .katex {
+    display: inline-block;
+    min-width: max-content;
+    white-space: nowrap;
+  }
+
+  .content-body .katex-display {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .content-body .katex,
+  .content-body .katex * {
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
   .site-header,
   .site-footer,
   .section-header,
