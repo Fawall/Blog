@@ -46,7 +46,3 @@ $1. \int_{\gamma}x\ ds, \gamma(t)=(t^3,t)\ with\ 0 \le t \le 1$
 $\textbf{Solution: }$ <br>
 $\text{Before of all, lets remember how calculate a integral of a curve:}$ $ \int_{}f(\gamma(s)) \cdot ||\gamma'(s)||\ ds $
 
-
-
-
-
