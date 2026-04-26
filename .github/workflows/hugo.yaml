@@ -54,7 +54,8 @@ jobs:
       - name: Verify static search index
         run: |
           test -s public/search/index.html
-          grep -q "const data" public/search/index.html
+          grep -q "search-page-input" public/search/index.html
+          grep -q "search-results" public/search/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
