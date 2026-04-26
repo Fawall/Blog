@@ -1,4 +1,4 @@
-baseURL = 'https://example.com/'
+baseURL = 'fawall.github.io.'
 languageCode = 'pt-br'
 title = 'Learning in Public'
 paginate = 6
