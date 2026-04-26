@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{ $sections := where site.Sections "Section" "not in" (slice "search" "topics" "topicos" "about" "sobre") }}
+<section class="section-block">
+	<div class="section-header">
+		<div>
+			<p class="eyebrow">Navigation</p>
+			<h1>{{ .Title }}</h1>
+			{{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+		</div>
+		<span class="pill">{{ len $sections }} categories</span>
+	</div>
+
+	<div class="post-grid">
+		{{ range $sections.ByTitle }}
+			<article class="card post-card">
+				<p class="post-meta">Section</p>
+				<h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+				{{ with .Description }}
+					<p>{{ . }}</p>
+				{{ else }}
+					<p>{{ len .RegularPages }} post(s) published.</p>
+				{{ end }}
+			</article>
+		{{ else }}
+			<article class="card post-card">
+				<p>No categories found.</p>
+			</article>
+		{{ end }}
+	</div>
+</section>
+{{ end }}

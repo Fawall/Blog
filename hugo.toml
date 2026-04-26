@@ -42,7 +42,7 @@ summaryLength = 28
     weight = 10
   [[menu.main]]
     name = 'Tópicos'
-    pageRef = '/topicos'
+    pageRef = '/topics'
     weight = 20
   [[menu.main]]
     name = 'Sobre'

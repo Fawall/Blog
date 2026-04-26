@@ -77,7 +77,8 @@ a:hover {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 120;
+  isolation: isolate;
   backdrop-filter: blur(14px);
   background: var(--header-bg);
 }
@@ -111,9 +112,11 @@ a:hover {
   gap: 0.7rem;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.site-nav a {
+.site-nav > a {
   padding: 0.55rem 0.9rem;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -122,6 +125,11 @@ a:hover {
 
 .topics-dropdown {
   position: relative;
+  z-index: 20;
+}
+
+.topics-dropdown[open] {
+  z-index: 80;
 }
 
 .topics-dropdown summary {
@@ -152,7 +160,14 @@ a:hover {
   max-height: 72vh;
   overflow: auto;
   padding: 1rem;
-  z-index: 30;
+  z-index: 90;
+  background: var(--bg);
+  border-color: var(--border);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.topics-panel ul {
+  list-style-position: outside;
 }
 
 .topics-all-link {
@@ -166,6 +181,29 @@ a:hover {
 
 .topics-all-link:hover {
   color: var(--accent);
+  border-color: var(--accent);
+}
+
+.topics-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.38rem;
+}
+
+.topics-links li {
+  margin: 0;
+}
+
+.topics-links a {
+  display: block;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.topics-links a:hover {
   border-color: var(--accent);
 }
 
@@ -490,19 +528,27 @@ h1 {
   }
 
   .post-content {
+    width: auto;
+    max-width: 100%;
+    overflow: visible;
     padding-right: 1rem;
   }
 
   .content-body {
+    width: auto;
+    max-width: 100%;
+    overflow: visible;
     padding-right: 0.5rem;
   }
 
   .content-body p,
   .content-body li {
     white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    word-wrap: anywhere;
+    overflow-wrap: anywhere;
     word-break: normal;
+    overflow: visible;
+    text-overflow: clip;
   }
 
   .content-body pre,
@@ -547,6 +593,15 @@ h1 {
     overflow-wrap: normal;
   }
 
+  .content-body .katex {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    vertical-align: middle;
+  }
+
   .site-header,
   .site-footer,
   .section-header,
@@ -575,6 +630,7 @@ h1 {
 
   .topics-dropdown {
     width: 100%;
+    z-index: 120;
   }
 
   .topics-dropdown summary {
@@ -583,8 +639,10 @@ h1 {
   }
 
   .topics-panel {
-    position: static;
-    width: 100%;
+    position: absolute;
+    left: 0;
+    width: min(680px, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
     margin-top: 0.55rem;
   }
 }
