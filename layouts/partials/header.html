@@ -1,15 +1,15 @@
 <header class="site-header">
   <div class="brand-block">
-    <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <a class="brand" href="{{ "" | relURL }}">{{ site.Title }}</a>
     <p class="brand-tagline">{{ site.Params.description }}</p>
   </div>
   <div class="nav-tools">
     <nav class="site-nav" aria-label="Primary">
-      <a href="{{ "/" | relURL }}">Home</a>
+      <a href="{{ "" | relURL }}">Home</a>
       <details class="topics-dropdown">
         <summary>Topics</summary>
         <div class="topics-panel card">
-          <a class="topics-all-link" href="{{ "/topics/" | relURL }}">View all topics</a>
+          <a class="topics-all-link" href="{{ "topics/" | relURL }}">View all topics</a>
           {{ $sections := where site.Sections "Section" "not in" (slice "search" "topics" "topicos" "about" "sobre") }}
           {{ if gt (len $sections) 0 }}
             <ul class="topics-links">
@@ -22,9 +22,9 @@
           {{ end }}
         </div>
       </details>
-      <a href="{{ "/sobre/" | relURL }}">About</a>
+      <a href="{{ "sobre/" | relURL }}">About</a>
     </nav>
-    <form class="search-form" action="{{ "/search/" | relURL }}" method="get" role="search">
+    <form class="search-form" action="{{ "search/" | relURL }}" method="get" role="search">
       <input type="search" name="q" placeholder="Search the entire blog" aria-label="Search the entire blog">
       <button type="submit">Search</button>
     </form>
