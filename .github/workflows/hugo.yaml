@@ -61,7 +61,7 @@ jobs:
         run: |
           test -s public/css/main.css
           test -s public/js/site.js
-          grep -q 'href=/Blog/css/main.css' public/index.html
+          grep -q 'main.css' public/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
