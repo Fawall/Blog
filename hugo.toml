@@ -1,4 +1,6 @@
 baseURL = 'https://fawall.github.io/Blog/'
+canonifyURLs = true
+relativeURLs = true
 languageCode = 'pt-br'
 title = 'Learning in Public'
 paginate = 6
